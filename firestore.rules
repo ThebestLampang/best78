@@ -1,0 +1,14 @@
+//จำกัดจำนวนเอกสารในแต่ละคิวรี่
+service clound.firestore {
+			match /databases/{database}/documents {
+	        function Login() {
+        	return request.auth.uid != null
+        }
+        match /posts/{posrId} {
+        	allow list: if request.query.limit <=15 && isLogin();
+          allow get, write: if isLogin()
+        }
+      }
+    }
+
+   
